@@ -8,16 +8,22 @@ import java.time.format.DateTimeFormatter;
 
 public class Logger {
     private static final String FILE_PATH = "/Users/Natalie/Desktop/BackEnd/mavenjava/src/main/java/homework300523/log.txt";
+    private File file;
 
     public Logger() {
         try {
-            File file = new File(FILE_PATH);
+            file = new File(FILE_PATH);
             if (!file.exists()) {
-                file.createNewFile();
+                boolean created = file.createNewFile();
+                if (!created) {
+                    throw new IOException("Не удалось создать файл журнала.");
+                }
             }
             FileWriter fileWriter = new FileWriter(file, true);
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("Ошибка создания файла журнала: " + e.getMessage());
+            System.exit(1);
         }
     }
 
