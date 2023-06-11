@@ -61,10 +61,10 @@ public class FirewallEventListener {
                 e.printStackTrace();
             }
 
-            String log1 = "Обработчик " + handlerName + event.getEventId() + event.getUserName();
-            String log2 = "Обработчик " + handlerName + event.getEventId() + event.getUserIp();
-            String log3 = "Обработчик " + handlerName + event.getEventId() + " " + event.getEventDate();
-            String log4 = "Обработчик " + handlerName + event.getEventId() + " " + event.getEventState();
+            String log1 = "Обработчик " + handlerName + " event ID: " + event.getEventId() + event.getUserName();
+            String log2 = "Обработчик " + handlerName + " event ID: " + event.getEventId() + event.getUserIp();
+            String log3 = "Обработчик " + handlerName + " event ID: " + event.getEventId() + " " + event.getEventDate();
+            String log4 = "Обработчик " + handlerName + " event ID: " + event.getEventId() + " " + event.getEventState();
 
             synchronized (logList) {
                 logList.add(log1);

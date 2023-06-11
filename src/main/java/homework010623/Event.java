@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Event {
-    private int eventId;
+    private final int eventId;
     private String userName;
     private String userIp;
     private LocalDateTime eventDate;
@@ -40,8 +40,7 @@ public class Event {
     }
 
     private static int getNextEventId() {
-        synchronized (nextEventId) {
             return nextEventId.getAndIncrement();
-        }
+
     }
 }

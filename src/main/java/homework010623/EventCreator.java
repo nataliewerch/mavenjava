@@ -24,6 +24,11 @@ public class EventCreator {
             int userId = i + 1;
             threads[i] = new Thread(() -> simulateUserWork(userId));
             threads[i].start();
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -49,7 +54,10 @@ public class EventCreator {
             EventState eventState = getRandomEventState(random);
 
             Event event = new Event(userName, userIp, eventDate, eventState);
-            eventList.add(event);
+
+            synchronized (eventList) {
+                eventList.add(event);
+            }
 
             try {
                 Thread.sleep(1000);
